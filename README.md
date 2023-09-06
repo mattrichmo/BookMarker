@@ -1,6 +1,14 @@
 # BookMarker
 
 Simple CLI to add a bookmark from anywhere in your terminal. 
+
+## Useage
+install: 
+```
+./install.sh
+```
+then after installation is complete, you can use the following examples, from anywhere in your terminal to add a bookmark to your documents folder. 
+
 ```
 bookmark http://example.com -d "This is a description" -f "This is a Folder Name" -t " tag1, tag2, tag3"
 ```

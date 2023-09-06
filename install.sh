@@ -32,3 +32,5 @@ echo "The 'bookmark' and 'bk' commands have been created in $script_dir and made
 echo "You can now use 'bookmark' or 'bk' to add links to your Markdown file."
 echo "  bookmark https://www.example.com"
 echo "  bk https://www.example.com"
+echo " Arguments include description, tags and folder names."
+echo ' Example w/ args: bookmark http://example.com -d "This is the description" -f "This is the folder" -t "tag1, tag2, tag3,"'
