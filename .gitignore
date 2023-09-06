@@ -1,0 +1,31 @@
+# Python virtual environment (venv) folders
+venv/
+__pycache__/
+
+# Compiled Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Editor-specific files and folders
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Environment-specific files
+.env
+
+# Logs
+*.log
+
+# Compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Dependency directories
+node_modules/
