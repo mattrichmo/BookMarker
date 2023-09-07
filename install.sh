@@ -6,9 +6,10 @@ if ! command -v python3 &> /dev/null; then
     exit 1
 fi
 
-# Create a 'bookmark' script in a directory in PATH
+# Define the directory where the 'bookmark' script will be placed
 script_dir="/usr/local/bin"  # You can change this to a different directory if needed
 
+# Check if the specified directory exists
 if [ ! -d "$script_dir" ]; then
     echo "The directory $script_dir does not exist. Please create it or choose a different directory."
     exit 1
@@ -32,5 +33,5 @@ echo "The 'bookmark' and 'bk' commands have been created in $script_dir and made
 echo "You can now use 'bookmark' or 'bk' to add links to your Markdown file."
 echo "  bookmark https://www.example.com"
 echo "  bk https://www.example.com"
-echo " Arguments include description, tags and folder names."
-echo ' Example w/ args: bookmark http://example.com -d "This is the description" -f "This is the folder" -t "tag1, tag2, tag3,"'
+echo " Arguments include description, tags, and folder names."
+echo ' Example with arguments: bookmark http://example.com -d "This is the description" -f "This is the folder" -t "tag1, tag2, tag3,"'

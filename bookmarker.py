@@ -101,15 +101,13 @@ def create_netscape_bookmarks():
                 html_file.write(f'<DT><H3>{folder_name}</H3>\n')
                 html_file.write("<DL>\n")
                 folder_stack.append((len(line) - len(line.lstrip()), folder_name))
-            else:
-                print(f"Skipping line due to incorrect format: {line.strip()}")
+            
 
         # Close any remaining folders
         while len(folder_stack) > 0:
             html_file.write("</DL>\n")
             folder_stack.pop()
 
-    print(f"Conversion complete. HTML file saved to: {html_file_path}")
 
 
 
