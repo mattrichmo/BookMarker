@@ -40,3 +40,14 @@ bookmarks.html:
 </DL>
 
 ```
+
+
+## Additional Args
+List all Folders:
+```
+bk --folders
+```
+List all Links: 
+```
+bk --list --all
+```
