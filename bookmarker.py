@@ -4,7 +4,7 @@ import re
 
 def add_link_to_md(link, foldername=None, description=None, tags=None):
     # Define the path to your documents folder
-    documents_folder = os.path.expanduser("~/Documents/bookmarker/")
+    documents_folder = os.path.expanduser("~/Documents/Bookmarks/")
 
     # Define the path to the Markdown file
     md_file_path = os.path.join(documents_folder, "bookmarks.md")
@@ -60,7 +60,7 @@ def add_link_to_md(link, foldername=None, description=None, tags=None):
 ## Function to create Netscape bookmarks in HTML format from the Markdown file
 def create_netscape_bookmarks():
     # Define the path to the Netscape bookmark file (HTML format)
-    documents_folder = os.path.expanduser("~/Documents/bookmarker/")
+    documents_folder = os.path.expanduser("~/Documents/Bookmarks/")
     html_file_path = os.path.join(documents_folder, "bookmarks.html")
     md_file_path = os.path.join(documents_folder, "bookmarks.md")
 
@@ -111,7 +111,7 @@ def create_netscape_bookmarks():
 # Function to list all links in the Markdown file
 def list_all_links():
     # Define the path to the Markdown file
-    documents_folder = os.path.expanduser("~/Documents/bookmarker/")
+    documents_folder = os.path.expanduser("~/Documents/Bookmarks/")
     md_file_path = os.path.join(documents_folder, "bookmarks.md")
 
     # Read the Markdown file and print all links
@@ -128,7 +128,7 @@ def list_all_links():
 
 def list_all_folders():
     # Define the path to the Markdown file
-    documents_folder = os.path.expanduser("~/Documents/bookmarker/")
+    documents_folder = os.path.expanduser("~/Documents/Bookmarks/")
     md_file_path = os.path.join(documents_folder, "bookmarks.md")
 
     # Read the Markdown file and print folders
@@ -147,26 +147,30 @@ def list_all_folders():
 
 
 def main():
-    # Define the path to the documents folder here as well
-    documents_folder = os.path.expanduser("~/Documents/bookmarker/")
-
     # Check if the command-line argument is provided
     if len(sys.argv) < 2:
-        print("Usage: bookmarker (bk) <link> [-f <foldername>] [-d <description>] [-t <tags>] [--list --all] [--folders]")
+        print("Usage: bookmarker (bk) [--export] <link> [-f <foldername>] [-d <description>] [-t <tags>] [--list --all] [--folders]")
         sys.exit(1)
 
     if sys.argv[1] == "--list" and sys.argv[2] == "--all":
         list_all_links()
     elif sys.argv[1] == "--folders":
         list_all_folders()
+    elif sys.argv[1] == "--export":
+        create_netscape_bookmarks()
+        print("Bookmarks exported to HTML file.")
     else:
-        link = sys.argv[1]
+        # Check if the --export argument is present in the arguments
+        export_requested = "--export" in sys.argv
+        link_index = 1 if not export_requested else 2  # Adjust the index based on --export
+
+        link = sys.argv[link_index]
         foldername = None
         description = None
         tags = None
 
-        # Parse command-line arguments
-        i = 2
+        # Parse command-line arguments starting from index link_index + 1
+        i = link_index + 1
         while i < len(sys.argv):
             arg = sys.argv[i]
             if arg == "-f" and i + 1 < len(sys.argv):
@@ -181,7 +185,11 @@ def main():
             i += 1
 
         add_link_to_md(link, foldername, description, tags)
-        create_netscape_bookmarks()
+
+        # Only export if --export was requested
+        if export_requested:
+            create_netscape_bookmarks()
+            print("Bookmarks exported to HTML file.")
 
         if foldername:
             print(f"Added {link} to the '{foldername}' folder in your bookmarks.")
@@ -190,3 +198,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -51,3 +51,7 @@ List all Links:
 ```
 bk --list --all
 ```
+Export to bookmarks.html
+```
+bk --export
+```
