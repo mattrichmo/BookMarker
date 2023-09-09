@@ -1,0 +1,3 @@
+- Example Folder
+	- [This is an example](https://linktest.com) - Tags: tag1, tag2, tag4
+	- [This is an example](https://linktest.com) - Tags: tag1, tag2, tag4
