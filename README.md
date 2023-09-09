@@ -1,6 +1,6 @@
 # BookMarker
 
-Simple CLI to add a bookmark from anywhere in your terminal.
+Simple CLI to add a bookmark from anywhere in your terminal. 
 
 ## Useage
 install: 
@@ -10,9 +10,13 @@ install:
 then after installation is complete, you can use the following examples, from anywhere in your terminal to add a bookmark to your documents folder. 
 
 ```
-bookmark http://example.com -d "This is a description" -f "This is a Folder Name" -t " tag1, tag2, tag3"
+bookmark http://example.com 
 ```
 or
+```
+bk http://example.com 
+```
+Additional optional args can be passed: 
 ```
 bk http://example.com -d "This is a description" -f "This is a Folder Name" -t " tag1, tag2, tag3"
 ```
@@ -54,4 +58,8 @@ bk --list --all
 Export to bookmarks.html
 ```
 bk --export
+```
+Import Existing bookmarks.html from browser
+```
+bk --import "path/to/your/bookmarks.html
 ```
