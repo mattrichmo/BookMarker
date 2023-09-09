@@ -145,11 +145,48 @@ def list_all_folders():
             folder_name = match_folder.group(1).strip()
             print(f"| - {folder_name}")
 
+def import_data_from_html(html_file_path):
+    # Check if the HTML file exists
+    if not os.path.exists(html_file_path):
+        print(f"HTML file '{html_file_path}' not found.")
+        return
+
+    # Open the HTML file and read its contents
+    with open(html_file_path, "r") as html_file:
+        html_content = html_file.read()
+
+    # Split the HTML content by lines
+    lines = html_content.splitlines()
+
+    # Initialize variables to track folder and tags
+    current_folder = None
+    current_tags = ""
+
+    # Iterate through the lines and process the content
+    for line in lines:
+        line = line.strip()  # Remove leading/trailing whitespace
+
+        # Check if the line starts with '<DT><H3>' indicating a folder
+        if line.startswith("<DT><H3>"):
+            current_folder = re.search(r'<DT><H3>(.*?)</H3>', line).group(1)
+        # Check if the line contains a link
+        elif line.startswith("<DT><A HREF="):
+            link_match = re.search(r'<A HREF="(.*?)".*?TAGS="(.*?)">(.*?)</A>', line)
+            if link_match:
+                link, tags, description = link_match.groups()
+                # Check if a folder is defined, and if so, add it to the Markdown
+                if current_folder:
+                    add_link_to_md(link, foldername=current_folder, description=description, tags=tags)
+                else:
+                    add_link_to_md(link, description=description, tags=tags)
+
+    print(f"Data imported from '{html_file_path}' to Markdown file.")
+
 
 def main():
     # Check if the command-line argument is provided
     if len(sys.argv) < 2:
-        print("Usage: bookmarker (bk) [--export] <link> [-f <foldername>] [-d <description>] [-t <tags>] [--list --all] [--folders]")
+        print("Usage: bookmarker (bk) [--export] [--import <html_file_path>] <link> [-f <foldername>] [-d <description>] [-t <tags>] [--list --all] [--folders]")
         sys.exit(1)
 
     if sys.argv[1] == "--list" and sys.argv[2] == "--all":
@@ -159,6 +196,9 @@ def main():
     elif sys.argv[1] == "--export":
         create_netscape_bookmarks()
         print("Bookmarks exported to HTML file.")
+    elif sys.argv[1] == "--import" and len(sys.argv) >= 3:
+        html_file_path = sys.argv[2]
+        import_data_from_html(html_file_path)
     else:
         # Check if the --export argument is present in the arguments
         export_requested = "--export" in sys.argv

@@ -1,6 +1,6 @@
 # BookMarker
 
-Simple CLI to add a bookmark from anywhere in your terminal. 
+Simple CLI to add a bookmark from anywhere in your terminal.
 
 ## Useage
 install: 
