@@ -61,7 +61,7 @@ bk --export
 ```
 Import Existing bookmarks.html from browser
 ```
-bk --import "path/to/your/bookmarks.html
+bk --import "path/to/your/bookmarks.html"
 ```
 
 
