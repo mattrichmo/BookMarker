@@ -63,3 +63,13 @@ Import Existing bookmarks.html from browser
 ```
 bk --import "path/to/your/bookmarks.html
 ```
+
+
+
+
+
+## TO-DO
+- Folder Heirachies 
+- List All Within A Folder
+- List All By Tag
+- add date added field so it doesnt interfere with the html file
