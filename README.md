@@ -47,13 +47,25 @@ bookmarks.html:
 
 
 ## Additional Args
-List all Folders:
+Create Subfolders (passed with link)
+```
+bk -f "folder/subfolder/subfolder of a subfolder/etc"
+```
+List all "Folders":
 ```
 bk --folders
 ```
 List all Links: 
 ```
 bk --list --all
+```
+List All Links Within A "Folder":
+```
+bk --list --f "Folder/Subfolder/etc"
+```
+List All By Tag
+```
+bk --list --t "Tag"
 ```
 Export to bookmarks.html
 ```
@@ -69,7 +81,8 @@ bk --import "path/to/your/bookmarks.html"
 
 
 ## TO-DO
-- Folder Heirachies 
-- List All Within A Folder
-- List All By Tag
+- ~~Folder Heirachies ~~
+- ~~List All Within A Folder~~
+- ~~List All By Tag~~
 - add date added field so it doesnt interfere with the html file
+- add syntax handling so mispelled words dont auto get added to link list
